@@ -8,7 +8,7 @@ app = Flask(__name__)
 conexion = MySQL(app)
 
 # Habilita CORS solo para las rutas específicas
-cors = CORS(app, resources={r"/*": {"origins": "*"}})
+cors = CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
 
 
 # Rutas

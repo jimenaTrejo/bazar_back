@@ -5,11 +5,27 @@ class ProductoModel:
     def listar_productos(conexion):
         try:
             cursor = conexion.connection.cursor()
-            sql = "SELECT title, description, price, stock, category, image FROM producto"
+            # sql = "SELECT id, title, description, price, stock, category, image FROM productos"
+            sql = "SELECT * FROM productos"
+
             cursor.execute(sql)
             datos = cursor.fetchall()
-            productos = [{ 'title': fila[0], 'description': fila[1], 'price': fila[2],
-                        'stock': fila[3], 'category': fila[4], 'image': fila[5]} for fila in datos]
+            productos = [
+                {
+                    'id': fila[0],
+                    'title': fila[1],
+                    'description': fila[2],
+                    'price': fila[3],
+                    'discountPercentage': fila[4],
+                    'rating': fila[5],
+                    'stock': fila[6],
+                    'brand': fila[7],
+                    'category': fila[8],
+                    'thumbnail': fila[9],
+                    'images': fila[10],  # Suponiendo que las imágenes están almacenadas como JSON
+                }
+                for fila in datos
+            ]
             return productos
         except Exception as ex:
             return None
